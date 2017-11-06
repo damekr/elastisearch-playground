@@ -1,0 +1,36 @@
+version: '2'
+services:
+  elasticsearch-sg-1:
+    image: damekr/elasticsearch-sg:latest
+    container_name: elasticsearch-sg-1
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - network.host=0.0.0.0 
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    volumes:
+      - /var/elastic/data:/usr/share/elasticsearch/data
+      - /var/elastic/config:/usr/share/elasticsearch/config
+    ports:
+      - 9200:9200
+#  elasticsearch-sg-2:
+#    image: damekr/elasticsearch-base:5.6.3
+#    container_name: elasticsearch-sg-2
+#    environment:
+#      - cluster.name=docker-cluster
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "discovery.zen.ping.unicast.hosts=elasticsearch-sg-1"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    mem_limit: 1g
+#    volumes:
+#      - /var/elastic-2/data:/usr/share/elasticsearch/data
+
