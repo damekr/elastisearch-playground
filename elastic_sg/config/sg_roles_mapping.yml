@@ -1,0 +1,74 @@
+nss_operator:
+  backendroles:
+    - operator_role
+
+nss_administrator:
+  backendroles:
+    - administrator_role
+
+nss_auditor:
+  backendroles:
+    - auditor_role
+
+nss_logstash:
+  users:
+    - logstash
+
+nss_kibana5_server:
+  users:
+    - kibanaserver
+
+nss_elastic_utils:
+  users:
+    - elastic_utils
+
+nss_ipfix_keeper:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=ipfix-keeper,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_snmp_keeper:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=snmp-keeper,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_monitor_state:
+  users:
+    - indexlister
+
+nss_servicebility_script:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=serviceability-script,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_house_keeper:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=house-keeper,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_curator:
+  users:
+    - curator
+
+nss_fluentd:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=fluentd,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_rule_hit_detector:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=rule-hit-detector,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_alarm_handler:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=alarm-handler,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_threat_exporter:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=threat-exporter,OU=AA Security,O=Nokia Siemens Networks'
+
+nss_tribe:
+  users:
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=tribe,OU=AA Security,O=Nokia Siemens Networks'
+
+{{- if .Values.profile | has "devel" }}
+demo_all_access:
+  users:
+    - admin
+    - 'L=Wroclaw,ST=dolnoslaskie,C=PL,CN=admin_integration_test,OU=AA Security,O=Nokia Siemens Networks'
+{{- end }}

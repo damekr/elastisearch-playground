@@ -1,0 +1,38 @@
+searchguard:
+  dynamic:
+    http:
+      anonymous_auth_enabled: false
+      xff:
+        enabled: true
+        internalProxies: '.*' # workaround - DNS not working
+        remoteIpHeader:  'x-forwarded-for'
+        proxiesHeader:   'x-forwarded-by'
+        trustedProxies: '.*' # workaround - DNS not working
+    authc:
+      basic_internal_auth_domain:
+        enabled: true
+        order: 3
+        http_authenticator:
+          type: basic
+          challenge: false
+        authentication_backend:
+          type: intern
+      proxy_auth_domain:
+        enabled: true
+        order: 4
+        http_authenticator:
+          type: proxy
+          challenge: true
+          config:
+            user_header: "x-proxy-user"
+            roles_header: "x-proxy-roles"
+        authentication_backend:
+          type: noop
+      clientcert_auth_domain:
+        enabled: true
+        order: 2
+        http_authenticator:
+          type: clientcert
+          challenge: false
+        authentication_backend:
+          type: noop

@@ -1,0 +1,57 @@
+ALL:
+  - "indices:*"
+MANAGE:
+  - "indices:monitor/*"
+  - "indices:admin/*"
+CREATE_INDEX:
+  - "indices:admin/create"
+MANAGE_ALIASES:
+  - "indices:admin/aliases*"
+MONITOR:
+  - "indices:monitor/*"
+DATA_ACCESS:
+  - "indices:data/*"
+WRITE:
+  - "indices:data/write*"
+READ:
+  - "indices:data/read*"
+DELETE:
+  - "indices:data/write/delete*"
+CRUD:
+  - READ
+  - WRITE
+SEARCH:
+  - "indices:data/read/search*"
+  - "indices:data/read/msearch*"
+  - SUGGEST
+SUGGEST:
+  - "indices:data/read/suggest*"
+INDEX:
+  - "indices:data/write/index*"
+  - "indices:data/write/update*"
+GET:
+  - "indices:data/read/get*"
+  - "indices:data/read/mget*"
+FIELD_STATS:
+  - "indices:data/read/field_stats*"
+FIELD_MAPPINGS:
+  - "indices:admin/mappings/fields/get*"
+FIELD_CAPS:
+  - "indices:data/read/field_caps"
+
+# CLUSTER
+CLUSTER_ALL:
+  - cluster:*
+CLUSTER_MONITOR:
+  - cluster:monitor/*
+CLUSTER_COMPOSITE_OPS_RO:
+  - "indices:data/read/mget"
+  - "indices:data/read/msearch"
+  - "indices:data/read/mtv"
+  - "indices:data/read/coordinate-msearch*"
+  - "indices:admin/aliases/exists*"
+  - "indices:admin/aliases/get*"
+CLUSTER_COMPOSITE_OPS:
+  - "indices:data/write/bulk"
+  - "indices:admin/aliases*"
+  - CLUSTER_COMPOSITE_OPS_RO
