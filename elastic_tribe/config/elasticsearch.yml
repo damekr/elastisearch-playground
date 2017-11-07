@@ -1,0 +1,52 @@
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+# set to 1 to allow single node clusters
+# Details: https://github.com/elastic/elasticsearch/pull/17288
+discovery.zen.ping.unicast.hosts: ["10.133.200.87:9300"]
+discovery.zen.minimum_master_nodes: 1
+searchguard:
+  ssl:
+    transport:
+      keystore_filepath: node-0-keystore.jks
+      keystore_password: changeit
+      truststore_filepath: truststore.jks
+      truststore_password: changeit
+      enforce_hostname_verification: false
+    http:
+      enabled: true
+      keystore_filepath: node-0-keystore.jks
+      keystore_password: changeit
+      truststore_filepath: truststore.jks
+      truststore_password: changeit
+searchguard:
+  authcz:
+    admin_dn:
+      - CN=kirk,OU=client,O=client,L=Test,C=DE
+      - L=Wroclaw,ST=dolnoslaskie,C=PL,CN=elasticsearch-admin,OU=AA Security,O=Nokia Siemens Networks
+
+tribe:
+  local_site:
+    cluster.name: "docker-cluster"
+    discovery.zen.ping.unicast.hosts: ["10.133.200.87:9300"]
+    searchguard:
+      ssl:
+        transport:
+          keystore_filepath: node-0-keystore.jks
+          keystore_password: changeit
+          truststore_filepath: truststore.jks
+          truststore_password: changeit
+          enforce_hostname_verification: false
+  remote_site:
+    cluster.name: "docker-cluster-2"
+    discovery.zen.ping.unicast.hosts: ["10.133.199.147:9300"]
+    searchguard:
+      ssl:
+        transport:
+          keystore_filepath: node-0-keystore.jks
+          keystore_password: changeit
+          truststore_filepath: truststore.jks
+          truststore_password: changeit
+          enforce_hostname_verification: false
+  on_conflict: prefer_local_site

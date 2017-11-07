@@ -1,0 +1,370 @@
+nss_operator:
+  cluster:
+      - '*'
+  indices:
+    '?kibana':
+      '*':
+        - indices:admin/exists*
+        - indices:admin/mapping/put*
+        - indices:admin/mappings/fields/get*
+        - indices:admin/refresh*
+        - indices:admin/validate/query*
+        - indices:data/read/get*
+        - indices:data/read/mget*
+        - indices:data/read/search*
+        - indices:data/write/delete*
+        - indices:data/write/index*
+        - indices:data/write/update*
+        - indices:data/read/msearch*
+        - indices:data/write/bulk[s]*
+    'snmp_edge_measurement-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'ipfix_base-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'ipfix_matched_rules-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'error-logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'kubesystem-logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'alarm_logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'alarm-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    _all:
+      '*':
+        - FIELD_STATS
+        - SEARCH
+    '*':
+      '*':
+        - FIELD_CAPS
+
+nss_administrator:
+  cluster:
+    - '*'
+  indices:
+    '?kibana':
+      '*':
+        - indices:admin/exists*
+        - indices:admin/mapping/put*
+        - FIELD_MAPPINGS
+        - indices:admin/refresh*
+        - indices:admin/validate/query*
+        - indices:data/read/get*
+        - indices:data/read/mget*
+        - indices:data/read/search*
+        - indices:data/write/delete*
+        - indices:data/write/index*
+        - indices:data/write/update*
+        - indices:data/read/msearch*
+        - indices:data/write/bulk[s]*
+    'snmp_edge_measurement-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'ipfix_base-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'ipfix_matched_rules-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'error-logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'kubesystem-logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'alarm_logs*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    'alarm-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    _all:
+      '*':
+        - FIELD_STATS
+        - SEARCH
+    '*':
+      '*':
+        - FIELD_CAPS
+
+nss_elastic_utils:
+  cluster:
+    - indices:admin/template/put
+    - indices:data/write/bulk
+    - cluster:monitor/main
+  indices:
+    '*':
+      '*':
+        - indices:admin/get*
+        - indices:admin/create*
+    '?kibana':
+      '*':
+        - ALL
+
+nss_kibana5_server:
+  cluster:
+    - CLUSTER_MONITOR
+    - CLUSTER_COMPOSITE_OPS
+  indices:
+    '?kibana':
+      '*':
+        - ALL
+
+nss_logstash:
+  cluster:
+    - indices:admin/template/get
+    - indices:admin/template/put
+  indices:
+    'logs-*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+    'error-logs-*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+    'alarm_logs*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+    'logstash-*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+    '*beat*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+
+nss_auditor:
+  cluster:
+      - '*'
+  indices:
+    '?kibana':
+      '*':
+        - indices:admin/exists*
+        - indices:admin/mapping/put*
+        - FIELD_MAPPINGS
+        - indices:admin/mappings/fields/get*
+        - indices:admin/refresh*
+        - indices:admin/validate/query*
+        - indices:data/read/get*
+        - indices:data/read/mget*
+        - indices:data/read/search*
+        - indices:data/write/delete*
+        - indices:data/write/index*
+        - indices:data/write/update*
+        - indices:data/read/msearch*
+        - indices:data/write/bulk[s]*
+    'audit-logs-*':
+      '*':
+        - READ
+        - FIELD_MAPPINGS
+    _all:
+      '*':
+        - FIELD_STATS
+        - SEARCH
+    '*':
+      '*':
+        - FIELD_CAPS
+
+nss_monitor_state:
+  cluster:
+    - cluster:monitor/state
+    - cluster:monitor/health
+    - cluster:monitor/stats
+  indices:
+    '*':
+      '*':
+        - indices:monitor/stats
+
+nss_servicebility_script:
+  cluster:
+    - cluster:monitor/state
+    - cluster:monitor/health
+    - cluster:monitor/stats
+  indices:
+    '?kibana':
+      '*':
+        - indices:data/read/search*
+    '*':
+      '*':
+        - indices:monitor/stats
+
+nss_curator:
+  indices:
+    '*':
+      '*':
+        - indices:admin/get
+        - indices:monitor/stats
+    'ipfix*':
+      '*':
+        - indices:data/read/field_stats
+        - indices:admin/delete
+    'logs*':
+      '*':
+        - indices:data/read/field_stats
+        - indices:admin/delete
+    'error-logs*':
+      '*':
+        - indices:data/read/field_stats
+        - indices:admin/delete
+    'audit-logs*':
+      '*':
+        - indices:data/read/field_stats
+        - indices:admin/delete
+    'alarm_logs*':
+      '*':
+        - indices:data/read/field_stats
+        - indices:admin/delete
+    'kubesystem-logs*':
+      '*':
+        - indices:data/read/field_stats
+        - indices:admin/delete
+  cluster:
+    - cluster:monitor/state
+    - cluster:monitor/main
+
+nss_house_keeper:
+  indices:
+    'alarm-*':
+      '*':
+        - indices:data/write/delete/byquery
+        - indices:data/write/bulk*
+        - indices:data/read/scroll/clear
+        - indices:data/read/scroll
+        - indices:data/read/search
+  cluster:
+    - cluster:monitor/stats
+    - cluster:monitor/nodes/stats
+    - indices:data/write/bulk
+    - indices:data/read/scroll/clear
+    - indices:data/read/scroll
+
+nss_ipfix_keeper:
+  cluster:
+    - cluster:monitor/health
+    - indices:data/write/bulk
+  indices:
+    'ipfix_*':
+      '*':
+        - ALL
+
+nss_snmp_keeper:
+  cluster:
+    - cluster:monitor/health
+    - indices:data/write/bulk
+  indices:
+    'snmp_edge_measurement-*':
+      '*':
+        - ALL
+
+nss_rule_hit_detector:
+  cluster:
+    - cluster:monitor/nodes/liveness
+    - indices:data/write/bulk
+  indices:
+    '*':
+      '*':
+        - READ
+    'rule_hit_detector_config':
+      '*':
+        - ALL
+
+nss_threat_exporter:
+  cluster:
+    - cluster:monitor/health
+    - indices:data/read/scroll*
+  indices:
+    'ipfix_base-*':
+      '*':
+        - READ
+    'ipfix_matched_rules-*':
+      '*':
+        - READ
+
+nss_alarm_handler:
+  cluster:
+    - cluster:monitor/health
+    - indices:data/write/bulk
+  indices:
+    'alarm-*':
+      '*':
+        - ALL
+
+nss_fluentd:
+  cluster:
+    - indices:admin/template/get
+    - indices:admin/template/put
+    - indices:data/write/bulk
+    - cluster:monitor/main
+  indices:
+    'logs-*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+        - indices:admin/mapping/put
+    'audit-logs-*':
+      '*':
+        - WRITE
+        - CREATE_INDEX
+        - indices:admin/mapping/put
+    'alarm_logs-*':
+      '*':
+        - WRITE
+        - CREATE_INDEX
+        - indices:admin/mapping/put
+    'error-logs-*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+        - indices:admin/mapping/put
+    'kubesystem-logs-*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+        - indices:admin/mapping/put
+
+nss_tribe:
+  indices:
+    '*':
+      '*':
+        - CRUD
+        - SEARCH
+
+demo_all_access:
+  cluster:
+    - '*'
+  indices:
+    '*':
+      '*':
+        - '*'

@@ -35,7 +35,22 @@ services:
       - ./elastic_sg/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     networks:
       - esnet
-
+  elasticsearch-sg-tribe:
+    build: elastic_tribe/
+    container_name: elasticsearch-sg-tribe
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    volumes:
+      - ./elastic_tribe/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks:
+      - esnet
 
 networks:
   esnet:
